@@ -13,8 +13,6 @@ const page = () => {
 
   const supabase = createClient()
 
-
-
   useEffect(() => {
     const fetchCourses = async () => {
       try {
@@ -31,7 +29,7 @@ const page = () => {
       }
     }
 
-    fetchCourses() // Fixed: Clean function invocation without the stray '>' character
+    fetchCourses() 
   }, [])
 
   if (loading) return <div className="p-6 text-white">Loading...</div>
@@ -39,7 +37,7 @@ const page = () => {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">
-      <aside className={`fixed top-0 left-0 z-30 h-screen flex flex-col p-3  justify-start items-center gap-15 bg-slate-900 transition-all duration-300 ${isOpen ? 'w-64' : 'w-15'}`}>
+      <aside className={`fixed top-0 left-0 z-30 h-screen flex flex-col p-3 justify-start items-center gap-15 bg-slate-900 transition-all duration-300 ${isOpen ? 'w-64' : 'w-15'}`}>
 
         <motion.div whileHover={{ color: "rgb(56, 189, 248)" }}><Menu className=' w-full cursor-pointer position-sticky' /></motion.div>
         <motion.div className='cursor-pointer' whileHover={{ color: "rgb(56, 189, 248)" }}><House /></motion.div>
@@ -47,16 +45,14 @@ const page = () => {
         <motion.div className='cursor-pointer' whileHover={{ color: "rgb(56, 189, 248)" }}> <BookOpen /></motion.div>
         <motion.div whileHover={{ color: "rgb(56, 189, 248)" }}><Settings className='mt-55 cursor-pointer' /></motion.div>
 
-
-
       </aside>
-      <div className='w-screen h-screen overflow-y-auto ml-15 bg-black p-5 flex flex-col gap-5 text-white font-bold text-xs'>
+      <div className='w-[calc(100vw-3.75rem)] h-screen overflow-y-auto ml-15 bg-black p-3 md:p-5 flex flex-col gap-5 text-white font-bold text-xs'>
 
-        <div className='flex w-full'>
-          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='h-[360px] w-2/3 border-slate-700 border rounded-xl p-5 relative'>
-            <motion.div initial={{ opacity: 0, x: 0 }} animate={{ opacity: 1, x: 5 }} className='text-5xl text-gray-400'>
+        <div className='flex flex-col lg:flex-row w-full gap-5 lg:gap-0'>
+          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='min-h-[360px] h-auto w-full lg:w-2/3 border-slate-700 border rounded-xl p-5 relative'>
+            <motion.div initial={{ opacity: 0, x: 0 }} animate={{ opacity: 1, x: 5 }} className='text-3xl md:text-5xl text-gray-400'>
               Welcome Back
-              {courses?.map((student) => (
+             {courses?.map((student) => (
                 <div key={student.id}>
 
                   <motion.div
@@ -72,19 +68,19 @@ const page = () => {
               ))}
             </motion.div>
           </motion.div>
-          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='h-[360px] w-1/3 border border-slate-700 rounded-xl p-5 ml-5'>
+          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='h-[360px] w-full lg:w-1/3 border border-slate-700 rounded-xl p-5 lg:ml-5'>
 
           </motion.div>
         </div>
 
-        <div className='flex w-full'>
-          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='h-[240px] w-1/3 border border-slate-700 rounded-xl p-5'>
+        <div className='flex flex-col lg:flex-row w-full gap-5 lg:gap-0'>
+          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='h-[240px] w-full lg:w-1/3 border border-slate-700 rounded-xl p-5'>
 
           </motion.div>
-          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='h-[240px] w-2/3 border border-slate-700 rounded-xl p-5 ml-5'>
+          <motion.div whileHover={{ y: 5, borderColor: "rgb(56, 189, 248)" }} className='min-h-[240px] h-auto w-full lg:w-2/3 border border-slate-700 rounded-xl p-5 lg:ml-5'>
 
             {courses?.map((student) => (
-              <div key={student.id} className="p-4  rounded-2xl bg-slate-900/20">
+              <div key={student.id} className="p-2 md:p-4 rounded-2xl bg-slate-900/20 mb-4">
 
                 <div className="flex flex-wrap gap-3">
                   {student['course-title']?.map((courseName, index) => (
@@ -92,7 +88,7 @@ const page = () => {
                       key={index}
                       className="w-fit p-3 border border-gray-700 rounded-xl bg-slate-900 shadow-sm"
                     >
-                      <h2 className="text-base font-semibold text-amber-100">
+                      <h2 className="text-sm md:text-base font-semibold text-amber-100">
                         {courseName}
                       </h2>
                     </div>
